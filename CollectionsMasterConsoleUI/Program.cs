@@ -22,10 +22,10 @@ namespace CollectionsMasterConsoleUI
             //Print the first number of the array
             Console.WriteLine($"{numbers[0]}");
             //Print the last number of the array            
-            Console.WriteLine($"{numbers[50]}"); //[numbers.Length - 1] if size of Array is unknown
+            Console.WriteLine($"{numbers[numbers.Length - 1]}"); //[numbers.Length - 1] if size of Array is unknown
             Console.WriteLine("All Numbers Original");
             //Use this method to print out your numbers from arrays or lists
-            //NumberPrinter();
+            NumberPrinter(numbers);
             Console.WriteLine("-------------------");
 
             //Reverse the contents of the array and then print the array out to the console.
@@ -35,20 +35,21 @@ namespace CollectionsMasterConsoleUI
             Console.WriteLine("All Numbers Reversed:");
 
             Console.WriteLine("---------REVERSE CUSTOM------------");
-
+            ReverseArray(numbers);
             Console.WriteLine("-------------------");
 
             //Create a method that will set numbers that are a multiple of 3 to zero then print to the console all numbers
             Console.WriteLine("Multiple of three = 0: ");
-            
+            ThreeKiller(numbers);
 
             Console.WriteLine("-------------------");
 
             //Sort the array in order now
             /*      Hint: Array.____()      */
             Console.WriteLine("Sorted numbers:");
-            
 
+            Array.Sort(numbers);
+            NumberPrinter(numbers);
             Console.WriteLine("\n************End Arrays*************** \n");
             #endregion
 
@@ -57,10 +58,10 @@ namespace CollectionsMasterConsoleUI
 
             /*   Set Up   */
             //Create an integer List
-            
+            var numList = new List<int>();
 
             //Print the capacity of the list to the console
-            
+            Console.WriteLine($"{numList.Capacity}");
 
             //Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
             
@@ -102,7 +103,14 @@ namespace CollectionsMasterConsoleUI
 
         private static void ThreeKiller(int[] numbers)
         {
-            
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] % 3 ==0)
+                {
+                    numbers[i] = 0;
+                }
+            }
+            NumberPrinter(numbers);
         }
 
         private static void OddKiller(List<int> numberList)
@@ -117,11 +125,13 @@ namespace CollectionsMasterConsoleUI
 
         private static void Populater(List<int> numberList)
         {
-            
+            while (numberList.Count < 51)
             {
-
+                Random rng = new Random();
+               var number = rng.Next(0, 50);
+                numberList.Add(number);
             }
-            Random rng = new Random();
+            NumberPrinter(numberList);
 
         }
 
@@ -137,7 +147,8 @@ namespace CollectionsMasterConsoleUI
 
         private static void ReverseArray(int[] array)
         {
-            
+            Array.Reverse(array);
+            NumberPrinter(array);
         }
 
         /// <summary>
